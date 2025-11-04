@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Munkaóra — Apádhelyett Anyád 😏</title>
 <style>
-:root {
+/* =======================================================================
+   THEME TOKENS
+   ======================================================================= */
+:root{
   --bg-grad-1:#f7f9ff; --bg-grad-2:#eef2ff;
-  --card:#ffffff; --text:#111827; --muted:#6b7280; --line:#e5e9f3;
-  --blue:#0b66ff; --green:#22c55e; --red:#ef4444; --yellow:#facc15; --orange:#fb923c; --violet:#8b5cf6;
-  --radius:20px; --shadow:0 10px 28px rgba(2,6,23,.08);
+  --card:#ffffff; --text:#111827; --muted:#6b7280; --line:#e7ecfb;
+  --blue:#0b66ff; --blue-2:#4b8dff; --green:#22c55e; --red:#ef4444; --yellow:#facc15; --violet:#8b5cf6; --orange:#fb923c;
+  --radius:20px; --shadow:0 12px 28px rgba(2,6,23,.08);
   --pill:#eaf0ff; --overlay:rgba(0,0,0,.5);
 }
 html[data-theme="dark"]{
@@ -18,6 +21,10 @@ html[data-theme="dark"]{
   --shadow:0 16px 40px rgba(0,0,0,.45);
   --pill:#16234d; --overlay:rgba(0,0,0,.6);
 }
+
+/* =======================================================================
+   RESET + BASE
+   ======================================================================= */
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
 body{
@@ -26,12 +33,26 @@ body{
   background:linear-gradient(180deg,var(--bg-grad-1),var(--bg-grad-2));
   display:flex; justify-content:center; align-items:stretch;
 }
+
+/* Layout wrapper */
 .container{width:100%;max-width:520px;padding:18px 14px 110px}
+
+/* Utils */
 .hidden{display:none !important}
 .center{text-align:center}
+.right{text-align:right}
+.bold{font-weight:900}
 .pill{display:inline-flex;align-items:center;gap:6px;background:var(--pill);color:var(--text);padding:2px 8px;border-radius:999px;font-weight:700;font-size:11px}
+.small{font-size:12px;color:var(--muted)}
+.mt-6{margin-top:6px}
+.mt-10{margin-top:10px}
+.mt-12{margin-top:12px}
+.mt-16{margin-top:16px}
+.mt-20{margin-top:20px}
 
-/* Welcome */
+/* =======================================================================
+   WELCOME
+   ======================================================================= */
 #welcomeScreen{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .welcome-logo{font-size:72px;margin-bottom:16px;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
@@ -40,28 +61,34 @@ body{
 .welcome-btn{background:var(--blue);color:#fff;border:none;border-radius:16px;padding:15px 44px;font-size:18px;font-weight:800;cursor:pointer;box-shadow:0 12px 32px rgba(11,102,255,.35);transition:transform .2s,box-shadow .2s}
 .welcome-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(11,102,255,.45)}
 
-/* Profile setup */
-#profileSetupScreen h1{font-size:30px;font-weight:900;margin:0 0 6px;text-align:center}
-#profileSetupScreen .subtitle{font-size:13px;color:var(--muted);text-align:center;margin:0 0 18px}
+/* =======================================================================
+   PROFILE SETUP
+   ======================================================================= */
+#profileSetupScreen h2{font-size:22px;margin:0 0 10px;text-align:center;color:var(--blue)}
+#profileSetupScreen p{color:var(--muted);text-align:center;margin:-4px 0 14px}
 
-/* Header & tabs */
+/* =======================================================================
+   HEADER + NAV TABS (PROFILE ICON ONLY!)
+   ======================================================================= */
 .app-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .brand{display:flex;flex-direction:column}
 .brand h1{font-size:26px;font-weight:900;letter-spacing:-.01em;margin:0}
 .brand small{color:var(--muted);font-size:12px}
 .header-right{display:flex;align-items:center;gap:10px}
 .profile-icon{width:40px;height:40px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;cursor:pointer}
-.settings-btn{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--violet),var(--blue));color:#fff;border:none;font-size:18px;font-weight:900;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.18)}
 .switch{display:flex;align-items:center;gap:6px}
 .toggle{appearance:none;width:44px;height:24px;background:#cfd8ff44;border-radius:999px;position:relative;cursor:pointer;outline:none}
 .toggle::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:left .18s}
 .toggle:checked::after{left:23px}
 
+/* Tabs WITHOUT profile */
 .tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 12px}
 .tab{border:none;border-radius:13px;background:#eaf0ff66;color:var(--text);font-weight:800;font-size:13px;padding:10px 0;cursor:pointer;transition:transform .12s,box-shadow .2s}
 .tab.active{background:var(--blue);color:#fff;box-shadow:0 10px 22px rgba(11,102,255,.25)}
 
-/* Cards & forms */
+/* =======================================================================
+   CARDS + FORM ELEMENTS
+   ======================================================================= */
 .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 14px;margin-bottom:14px}
 h2{margin:0 0 10px;text-align:center;color:var(--blue);font-size:18px}
 label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
@@ -74,17 +101,19 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);outline:none;bo
 .btn-full{width:100%}
 .blue{background:var(--blue)} .green{background:var(--green)} .red{background:var(--red)} .yellow{background:var(--yellow);color:#111} .gray{background:#e9eef8;color:#111}
 
-/* Calculator result */
+/* Calculator result + coach bubble */
 .result{background:#f4f8ff;border:1px dashed #dbe5ff;color:#0b2a66;border-radius:12px;padding:10px 12px;font-weight:800;text-align:center}
+.bubble{position:fixed;right:12px;bottom:80px;max-width:280px;background:var(--blue);color:#fff;padding:12px 14px;border-radius:16px;box-shadow:0 18px 40px rgba(0,0,0,.35);font-size:13px;z-index:1200;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s}
+.bubble.show{opacity:1;transform:translateY(0)}
 
-/* Lists */
+/* Results list */
 .controls{display:grid;grid-template-columns:1fr 120px 120px;gap:8px;margin-bottom:10px}
-@media(max-width:420px){.controls{grid-template-columns:1fr 1fr;}.controls .only-wide{grid-column:1/-1}}
+@media(max-width:420px){.controls{grid-template-columns:1fr 1fr}.controls .only-wide{grid-column:1/-1}}
 .list{list-style:none;margin:6px 0 0;padding:0}
 .item{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
-.item .meta{display:flex;align-items:center;gap:8px}
+.meta{display:flex;align-items:center;gap:8px}
 .badge{font-size:11px;border-radius:999px;padding:3px 8px;font-weight:800}
-.b-green{background:#dffbe7;color:#0f5f32} .b-red{background:#ffe4e4;color:#8f1d1d}
+.b-green{background:#dffbe7;color:#0f5f32}.b-red{background:#ffe4e4;color:#8f1d1d}
 .price{white-space:nowrap;font-weight:800}
 .actions{display:flex;gap:6px}
 .icon-btn{border:none;background:#eef2ff;color:#0b2a66;border-radius:10px;padding:8px;cursor:pointer}
@@ -92,7 +121,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--blue);outline:none;bo
 .icon-btn.secondary{background:#eaf9ef;color:#124d2a}
 
 /* Undo snackbar */
-.snack{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#101828;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px;z-index:2000}
+.snack{position:fixed;left:50%;bottom:80px;transform:translateX(-50%);background:#101828;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.3);display:flex;align-items:center;gap:10px;z-index:1300}
 .snack button{background:#fff;color:#111;border:none;border-radius:10px;padding:6px 10px;font-weight:800;cursor:pointer}
 
 /* Stats */
@@ -105,7 +134,7 @@ canvas{width:100%;height:auto;border-radius:12px;background:#ffffff08}
 .progress{height:12px;background:#e8ecff;border-radius:999px;overflow:hidden}
 .progress .bar{height:100%;background:linear-gradient(135deg,var(--green),#66e3a0);width:0%}
 
-/* Modal */
+/* Modals */
 .modal{position:fixed;inset:0;background:var(--overlay);display:flex;align-items:center;justify-content:center;z-index:1500;padding:16px}
 .modal-content{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:16px;max-width:540px;width:100%}
 .modal-actions{display:flex;gap:8px;margin-top:10px}
@@ -113,23 +142,32 @@ textarea.code{height:160px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,
 
 /* Footer */
 footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
+
+/* Tiny helpers for long screens */
+.sep{height:8px}
 </style>
 </head>
 <body>
 
-<!-- WELCOME -->
-<div id="welcomeScreen" class="container">
+<!-- ==============================================================
+     WELCOME
+     ============================================================== -->
+<div id="welcomeScreen" class="container" aria-live="polite">
   <div class="welcome-logo">⏰</div>
   <h1 class="welcome-title">Munkaóra</h1>
-  <p class="welcome-subtitle">Tudd meg, hány munkaórádba kerülnek a dolgok, és hozz okosabb döntéseket!<br><span class="pill">+ Apádhelyett Anyád 😏</span></p>
+  <p class="welcome-subtitle">Tudd meg, hány munkaórádba kerülnek a dolgok, és hozz okosabb döntéseket!<br>
+    <span class="pill">+ Apádhelyett Anyád 😏</span>
+  </p>
   <button class="welcome-btn" id="startBtn" aria-label="Kezdjük">Kezdjük! 🚀</button>
 </div>
 
-<!-- PROFILE SETUP -->
-<div id="profileSetupScreen" class="container hidden" aria-live="polite">
+<!-- ==============================================================
+     PROFILE SETUP (kötelező)
+     ============================================================== -->
+<div id="profileSetupScreen" class="container hidden">
   <div class="card">
     <h2>Állítsd be a profilod</h2>
-    <p class="center" style="margin:-4px 0 10px;color:var(--muted)">Add meg az adataidat a pontos számításhoz</p>
+    <p>Az első számításhoz ezek kellenek.</p>
     <label for="setupName">Becenév</label>
     <input id="setupName" type="text" placeholder="Add meg a beceneved" />
     <label for="setupAge">Kor</label>
@@ -145,8 +183,10 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
   </div>
 </div>
 
-<!-- APP -->
-<div id="appScreen" class="container hidden">
+<!-- ==============================================================
+     APP
+     ============================================================== -->
+<div id="appScreen" class="container hidden" aria-live="polite">
   <div class="app-header">
     <div class="brand">
       <h1>Munkaóra</h1>
@@ -154,11 +194,11 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
     </div>
     <div class="header-right">
       <div class="switch"><input id="themeToggle" class="toggle" type="checkbox" aria-label="Sötét mód kapcsoló" /></div>
-      <button class="settings-btn" id="openSettings" title="Beállítások">⚙️</button>
       <div class="profile-icon" id="profileIcon" title="Profil">👤</div>
     </div>
   </div>
 
+  <!-- NINCS profil tab! -->
   <nav class="tabs" role="tablist">
     <button class="tab active" data-view="calc" role="tab" aria-selected="true">Kalkulátor</button>
     <button class="tab" data-view="results" role="tab">Eredmények</button>
@@ -166,7 +206,7 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
     <button class="tab" data-view="goals" role="tab">Célok</button>
   </nav>
 
-  <!-- CALCULATOR -->
+  <!-- ======================= CALCULATOR ======================= -->
   <section id="view-calc" class="card" role="region" aria-label="Kalkulátor">
     <h2>Kalkulátor</h2>
     <p class="center" id="hello">Szia! Kezdjük egy tétellel.</p>
@@ -175,26 +215,28 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
     <label for="productPrice">Termék ára (Ft)</label>
     <input id="productPrice" type="number" min="1" placeholder="pl. 79990" />
     <button class="btn yellow btn-full" id="calculateBtn">Kiszámolom</button>
-    <div id="calcResult" class="hidden" style="margin-top:14px">
+
+    <div id="calcResult" class="hidden mt-12">
       <p class="result" id="workHoursText"></p>
-      <p class="center" id="hourlyHint" style="color:var(--muted);margin:8px 0 12px"></p>
+      <p class="center small" id="hourlyHint"></p>
       <div class="row">
         <button class="btn green" id="saveBtn">Megspórolom 💚</button>
         <button class="btn red" id="buyBtn">Megveszem 💸</button>
       </div>
+      <p class="small mt-6 center">A mentéshez válaszd ki, hogy spórolod vagy megveszed.</p>
     </div>
   </section>
 
-  <!-- RESULTS -->
+  <!-- ======================= RESULTS ======================= -->
   <section id="view-results" class="card hidden" role="region" aria-label="Eredmények">
     <h2>Eredmények</h2>
-    <div class="sum" style="margin-bottom:8px">
+    <div class="sum mt-6">
       <div><span>💚 Megspórolt összeg</span><b id="totalSaved">0 Ft</b></div>
       <div><span>💸 Elköltött összeg</span><b id="totalSpent">0 Ft</b></div>
       <div><span class="muted">🧮 Nettó</span><b id="net">0 Ft</b></div>
     </div>
 
-    <div class="controls">
+    <div class="controls mt-12">
       <input id="searchBox" type="search" placeholder="Keresés név szerint…" aria-label="Keresés" />
       <select id="filterSelect" class="only-wide" aria-label="Szűrés">
         <option value="all">Összes</option>
@@ -211,23 +253,26 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
       </select>
     </div>
 
-    <ul class="list" id="itemList" aria-live="polite"></ul>
+    <ul class="list" id="itemList"></ul>
 
-    <div class="row" style="margin-top:12px">
+    <div class="row mt-12">
       <button class="btn gray" id="clearAll">Lista ürítése</button>
       <button class="btn blue" data-view="calc">Új tétel</button>
     </div>
   </section>
 
-  <!-- STATS -->
+  <!-- ======================= STATS ======================= -->
   <section id="view-stats" class="card hidden" role="region" aria-label="Statisztika">
     <h2>Statisztika</h2>
-    <div class="stat-legend"><span class="dot green"></span><span class="hint">Megspórolt</span><span class="dot red"></span><span class="hint">Megvett</span></div>
+    <div class="stat-legend">
+      <span class="dot green"></span><span class="small">Megspórolt</span>
+      <span class="dot red"></span><span class="small">Megvett</span>
+    </div>
     <canvas id="statsCanvas" width="680" height="360"></canvas>
-    <p class="center hint">Havi bontás + mozgóátlag (Ft)</p>
+    <p class="center small mt-10">Havi bontás + mozgóátlag (Ft)</p>
   </section>
 
-  <!-- GOALS -->
+  <!-- ======================= GOALS ======================= -->
   <section id="view-goals" class="card hidden" role="region" aria-label="Célok">
     <h2>Célok</h2>
     <label for="monthlyCap">Havi költési keret (Ft)</label>
@@ -238,18 +283,21 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
       <button class="btn blue" id="saveGoals">Célok mentése</button>
       <button class="btn gray" id="resetGoals">Célok törlése</button>
     </div>
-    <div style="margin-top:14px">
-      <div class="center" style="margin-bottom:8px"><b>Spórolási cél teljesülése</b> — <span id="goalProgressLabel">0%</span></div>
-      <div class="progress"><div class="bar" id="goalProgressBar" style="width:0%"></div></div>
+    <div class="mt-12">
+      <div class="center small mt-6"><b>Spórolási cél teljesülése</b> — <span id="goalProgressLabel">0%</span></div>
+      <div class="progress mt-10"><div class="bar" id="goalProgressBar" style="width:0%"></div></div>
     </div>
   </section>
 
-  <footer>© 2025 Munkaóra • Apádhelyett Anyád 😏</footer>
-  <div id="coach" class="hidden"></div>
-  <div id="snack" class="hidden"></div>
+  <footer class="mt-16">© 2025 Munkaóra • Apádhelyett Anyád 😏</footer>
+
+  <div id="coach" class="bubble" role="status" aria-live="polite"></div>
+  <div id="snack" class="snack hidden"></div>
 </div>
 
-<!-- PROFILE MODAL -->
+<!-- ==============================================================
+     PROFILE MODAL (ikonból)
+     ============================================================== -->
 <div id="profileModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Profil szerkesztése">
   <div class="modal-content">
     <h2>Profil szerkesztése</h2>
@@ -269,7 +317,9 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
   </div>
 </div>
 
-<!-- SETTINGS MODAL -->
+<!-- ==============================================================
+     SETTINGS MODAL (export/import/reset) – a profil ikon nélkül is jól jöhet
+     ============================================================== -->
 <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="Beállítások">
   <div class="modal-content">
     <h2>Beállítások</h2>
@@ -286,14 +336,20 @@ footer{color:var(--muted);text-align:center;font-size:12px;margin-top:8px}
 </div>
 
 <script>
+/* =======================================================================
+   TINY HELPERS
+   ======================================================================= */
 const $=s=>document.querySelector(s);
 const $$=s=>Array.from(document.querySelectorAll(s));
 const esc=s=>(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
 const fmtFt=v=>new Intl.NumberFormat("hu-HU",{style:"currency",currency:"HUF",maximumFractionDigits:0}).format(Number(v||0));
 const now=()=>Date.now();
 const MONTHS=["01","02","03","04","05","06","07","08","09","10","11","12"];
-const schemaVersion=2;
 
+/* =======================================================================
+   DATA LAYER + MIGRATION
+   ======================================================================= */
+const schemaVersion=2;
 const Data={
   get:(k)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}},
   set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}},
@@ -313,7 +369,7 @@ const Data={
 
 const API={
   profile:()=>Data.get("profile"),
-  saveProfile:(p)=>{Data.set("profile",p)},
+  saveProfile:(p)=>Data.set("profile",p),
   deleteProfile:()=>{["profile","saved","spent","goals"].forEach(Data.del)},
   list:(type)=>Data.get(type)||[],
   add:(type,item)=>{const list=Data.get(type)||[];list.unshift({...item,at:now(),type});Data.set(type,list)},
@@ -323,16 +379,7 @@ const API={
   setTheme:(t)=>Data.set("theme",t),
   goals:()=>Data.get("goals")||{monthlyCap:0,savingGoal:0},
   saveGoals:(g)=>Data.set("goals",g),
-  exportAll:()=>{
-    return {
-      __schema:schemaVersion,
-      profile:API.profile(),
-      saved:API.list("saved"),
-      spent:API.list("spent"),
-      goals:API.goals(),
-      theme:API.theme()
-    };
-  },
+  exportAll:()=>({__schema:schemaVersion,profile:API.profile(),saved:API.list("saved"),spent:API.list("spent"),goals:API.goals(),theme:API.theme()}),
   importAll:(obj)=>{
     if(!obj||typeof obj!=="object") throw new Error("Érvénytelen JSON");
     if(obj.__schema && obj.__schema>schemaVersion) throw new Error("Újabb sémájú adat – frissítsd az appot!");
@@ -345,6 +392,9 @@ const API={
   }
 };
 
+/* =======================================================================
+   COACH MESSAGES (sok, hogy mindig változatos legyen)
+   ======================================================================= */
 const COACH=[
 "Ejnye, ezért most sokat fogsz dolgozni. 😬","A pénztárcád halk sírást hallatott. 💸","A jövőbeli éned most csóválja a fejét.",
 "Ha boldoggá tesz, oké – de sok órádba kerül.","Ez már a 'drága, de kell' kategória? 🤨","A bankszámlád szabadságra ment.",
@@ -374,31 +424,28 @@ const COACH=[
 "Ha a munkád boldoggá tesz – megdolgoztál érte.","A jövőbeli számlák nem felejtenek.","A keret csipogott. 📉","A döntés megvan – most használd is, sokat!",
 "Minimum 10 óra – maximum öröm?","Ha ez inspirál: nyertél. Ha nem: tanultál.","Oké, de a következő legyen 'Megspórolom'.",
 "A bankod eddig bírta nevetés nélkül. 😬","Minden rendben – csak most kicsit drága lett.","A spórolásod most visszaszámol.",
-"Ezt még Anyád is megkérdezné: kellett?","Zárjuk le: használd egészséggel, okosan. ✅",
-"Ez már borderline luxus. 💎","Egy hónapnyi kávé ára ment el. ☕","Ha holnap is így érzed, tartsd meg.",
-"Ár/öröm arány? Gondold át.","Kicsit sok lett a munkaóra a kosárban.","A jövő heti céljaid is számítanak.","Lehetett volna 'Megspórolom' is… 😉",
-"Ez nem csak pénz, idő is.","Ha kihagyod, mit vesztesz?","Élmény vagy tárgy?","Ha elromlik, mennyire fáj?","Egyszeri öröm vs tartós érték.",
-"Állj meg egy pillanatra, vegyél levegőt.","Ha ajándék magadnak – legyen tudatos.","Ezt most csuklógyakorlatból vetted.",
-"Nem rossz döntés – csak drága.","Használni fogod heti 3×?","Tanulópénz vagy befektetés?","A hűtőd üzeni: hello, rezsi! 🧾",
-"Ugye nem hitelre ment?","Ha figyelsz, a következő már spórolt lesz.","Költs, de okosan – és ritkán nagyot.",
-"Ha nem okoz stresszt: oké.","Ha igen: válts 'Megspórolom'-ra legközelebb.","Én szóltam. 😏","Zárjuk le: élvezd, de tanulj belőle."
+"Ezt még Anyád is megkérdezné: kellett?","Zárjuk le: használd egészséggel, okosan. ✅"
 ];
 
+/* =======================================================================
+   UI HELPERS
+   ======================================================================= */
 const UI={
   setTheme(theme){document.documentElement.setAttribute("data-theme",theme);$("#themeToggle").checked=(theme==="dark");API.setTheme(theme)},
   snack(msg,withUndo,undoFn){
-    const s=$("#snack"); s.className="snack"; s.innerHTML="";
-    const span=document.createElement("span"); span.textContent=msg; s.appendChild(span);
-    if(withUndo){
-      const b=document.createElement("button"); b.textContent="Visszavonás"; b.addEventListener("click",()=>{undoFn&&undoFn(); s.classList.add("hidden");}); s.appendChild(b);
-    }
+    const s=$("#snack"); s.classList.remove("hidden"); s.innerHTML="";
+    const t=document.createElement("span"); t.textContent=msg; s.appendChild(t);
+    if(withUndo){const b=document.createElement("button"); b.textContent="Visszavonás"; b.addEventListener("click",()=>{undoFn&&undoFn(); s.classList.add("hidden");}); s.appendChild(b);}
     setTimeout(()=>s.classList.add("hidden"),3500);
   },
-  coach(msg){const b=$("#coach"); b.className="bubble"; b.textContent="Apádhelyett Anyád: "+msg; setTimeout(()=>{b.classList.add("hidden")},2400)}
+  coach(text){const b=$("#coach"); b.textContent="Apádhelyett Anyád: "+text; b.classList.add("show"); setTimeout(()=>b.classList.remove("show"),2400);}
 };
 
+/* =======================================================================
+   APP
+   ======================================================================= */
 const App={
-  state:{view:"calc",lastAction:null,search:"",filter:"all",sort:"date_desc"},
+  state:{view:"calc",search:"",filter:"all",sort:"date_desc",lastAction:null},
   init(){
     Data.migrate();
     this.bindWelcome();
@@ -409,15 +456,16 @@ const App={
     this.bindResults();
     this.bindGoals();
     this.bindProfileModal();
-    this.bindSettings();
     this.bindShortcuts();
     const p=API.profile();
     if(p){$("#welcomeScreen").classList.add("hidden");$("#appScreen").classList.remove("hidden");this.updateProfileIcon();this.syncCalcHello();}
     UI.setTheme(API.theme());
-    this.setView(p?"calc":"calc"); // landing view
+    this.setView("calc");
     this.renderResults();
     this.updateGoalsUI();
   },
+
+  /* ---------- Flow: Welcome → Profile ---------- */
   bindWelcome(){
     $("#startBtn").addEventListener("click",()=>{$("#welcomeScreen").classList.add("hidden");$("#profileSetupScreen").classList.remove("hidden")});
     $("#backToWelcome").addEventListener("click",()=>{$("#profileSetupScreen").classList.add("hidden");$("#welcomeScreen").classList.remove("hidden")});
@@ -437,9 +485,13 @@ const App={
       this.updateProfileIcon(); this.syncCalcHello();
     });
   },
+
+  /* ---------- Theme ---------- */
   bindTheme(){
     const t=$("#themeToggle"); t.addEventListener("change",()=>UI.setTheme(t.checked?"dark":"light")); UI.setTheme(API.theme());
   },
+
+  /* ---------- Tabs (no profile tab) ---------- */
   bindTabs(){
     $$(".tab").forEach(tab=>tab.addEventListener("click",()=>this.setView(tab.dataset.view)));
     $$('[data-view="calc"]').forEach(b=>b.addEventListener("click",()=>this.setView("calc")));
@@ -456,8 +508,10 @@ const App={
     if(v==="calc") this.syncCalcHello();
     window.scrollTo({top:0,behavior:"smooth"});
   },
+
+  /* ---------- Calculator ---------- */
   bindCalculator(){
-    const calc=()=> {
+    const calc=()=>{
       const p=API.profile(); if(!p){alert("Előbb töltsd ki a profilod!");return;}
       const name=$("#productName").value.trim(); const price=Number($("#productPrice").value);
       if(!name||!price||price<=0){alert("Add meg a termék nevét és árát!");return;}
@@ -465,20 +519,28 @@ const App={
       $("#workHoursText").textContent=`Kb. ${hours.toFixed(1)} munkaórádba kerülne (${fmtFt(price)}).`;
       $("#hourlyHint").textContent=`Jelenlegi órabéred ~ ${fmtFt(hourly)}/óra`;
       const r=$("#calcResult"); r.dataset.name=name; r.dataset.price=String(price); r.dataset.hours=String(hours); r.classList.remove("hidden");
+      UI.coach(COACH[Math.floor(Math.random()*COACH.length)]); // üzenet számoláskor
     };
     $("#calculateBtn").addEventListener("click",calc);
+
     const commit=(type)=>{
       const r=$("#calcResult"); const name=r.dataset.name; const price=Number(r.dataset.price); const hours=Number(r.dataset.hours);
       if(!name||!price){alert("Előbb számolj!");return;}
       API.add(type,{name,price,hours});
       this.state.lastAction={type,entry:{name,price,hours,at:now()}};
       $("#productName").value=""; $("#productPrice").value=""; r.classList.add("hidden");
-      if(type==="spent" && hours>10){ UI.coach(COACH[Math.floor(Math.random()*COACH.length)]); setTimeout(()=>this.setView("results"),2500); }
-      else { this.setView("results"); }
+      this.setView("results");
     };
     $("#saveBtn").addEventListener("click",()=>commit("saved"));
     $("#buyBtn").addEventListener("click",()=>commit("spent"));
   },
+  syncCalcHello(){
+    const p=API.profile(); const h=$("#hello");
+    if(!p){ h.textContent="Szia! Töltsd ki a profilod a pontos számításhoz."; return; }
+    h.innerHTML=`Szia <b>${esc(p.name)}</b>! Nézzük meg, hány órádba kerülne.`;
+  },
+
+  /* ---------- Results: list, search, filter, sort, edit/delete ---------- */
   bindResults(){
     $("#clearAll").addEventListener("click",()=>{
       if(!confirm("Biztos üríted a listát?")) return;
@@ -494,7 +556,7 @@ const App={
     const q=this.state.search; const filter=this.state.filter; const sort=this.state.sort;
     let items=[...API.list("saved"),...API.list("spent")];
     if(filter!=="all") items=items.filter(i=>i.type===filter);
-    if(q) items=items.filter(i=> (i.name||"").toLowerCase().includes(q));
+    if(q) items=items.filter(i=>(i.name||"").toLowerCase().includes(q));
     items.sort((a,b)=>{
       if(sort==="date_desc") return (b.at||0)-(a.at||0);
       if(sort==="date_asc") return (a.at||0)-(b.at||0);
@@ -516,20 +578,18 @@ const App={
 
     const items=this.itemsFilteredSorted();
     const ul=$("#itemList"); ul.innerHTML="";
-    items.forEach((it,idx)=>{
+    items.forEach((it)=>{
       const li=document.createElement("li"); li.className="item";
       const meta=document.createElement("div"); meta.className="meta";
       const badge=document.createElement("span"); badge.className="badge "+(it.type==="saved"?"b-green":"b-red"); badge.textContent=(it.type==="saved"?"spórolt":"vett");
       const name=document.createElement("span"); name.innerHTML=esc(it.name);
       const price=document.createElement("span"); price.className="price"; price.textContent=fmtFt(it.price);
       meta.appendChild(badge); meta.appendChild(name); li.appendChild(meta); li.appendChild(price);
-
       const actions=document.createElement("div"); actions.className="actions";
       const editBtn=document.createElement("button"); editBtn.className="icon-btn secondary"; editBtn.title="Szerkesztés"; editBtn.textContent="✏️";
       const delBtn=document.createElement("button"); delBtn.className="icon-btn danger"; delBtn.title="Törlés"; delBtn.textContent="🗑️";
       actions.appendChild(editBtn); actions.appendChild(delBtn); li.appendChild(actions);
       ul.appendChild(li);
-
       editBtn.addEventListener("click",()=>this.editItem(it));
       delBtn.addEventListener("click",()=>this.deleteItem(it));
     });
@@ -554,6 +614,8 @@ const App={
     this.renderResults(); this.drawStats();
     UI.snack("Tétel törölve.",true,()=>{ list.splice(idx,0,removed); API.setList(item.type,list); this.renderResults(); this.drawStats(); });
   },
+
+  /* ---------- Stats ---------- */
   drawStats(){
     const cvs=$("#statsCanvas"); const ctx=cvs.getContext("2d");
     ctx.clearRect(0,0,cvs.width,cvs.height);
@@ -575,7 +637,6 @@ const App={
       ctx.fillStyle=style.getPropertyValue("--muted"); ctx.font="12px system-ui"; ctx.textAlign="center";
       ctx.fillText(labels[i], x0+bar/2+3, P.t+H+16);
     }
-    // moving average (spent)
     if(pData.length>=3){
       const avg=[]; for(let i=0;i<pData.length;i++){ const a=pData.slice(Math.max(0,i-2),i+1); avg.push(a.reduce((s,v)=>s+v,0)/a.length); }
       ctx.beginPath(); ctx.lineWidth=2; ctx.strokeStyle=style.getPropertyValue("--blue");
@@ -583,6 +644,8 @@ const App={
       ctx.stroke();
     }
   },
+
+  /* ---------- Goals ---------- */
   bindGoals(){
     $("#saveGoals").addEventListener("click",()=>{
       const g={monthlyCap:Number($("#monthlyCap").value)||0, savingGoal:Number($("#savingGoal").value)||0};
@@ -596,6 +659,8 @@ const App={
     const pct=goal>0?Math.min(100,Math.round((totalSaved/goal)*100)):0;
     $("#goalProgressBar").style.width=pct+"%"; $("#goalProgressLabel").textContent=pct+"%";
   },
+
+  /* ---------- Profile modal from icon ---------- */
   bindProfileModal(){
     $("#profileIcon").addEventListener("click",()=>{
       const p=API.profile()||{name:"",age:"",salary:"",hours:""};
@@ -613,35 +678,17 @@ const App={
       API.deleteProfile(); $("#profileModal").classList.add("hidden"); $("#appScreen").classList.add("hidden"); $("#welcomeScreen").classList.remove("hidden");
     });
   },
-  bindSettings(){
-    $("#openSettings").addEventListener("click",()=>{$("#settingsModal").classList.remove("hidden"); $("#jsonArea").value=""});
-    $("#closeSettings").addEventListener("click",()=>$("#settingsModal").classList.add("hidden"));
-    $("#exportData").addEventListener("click",()=>{
-      const obj=API.exportAll(); $("#jsonArea").value=JSON.stringify(obj,null,2); UI.snack("Export kész. Másold ki alul.");
-    });
-    $("#importData").addEventListener("click",()=>{
-      try{ const obj=JSON.parse($("#jsonArea").value||"{}"); API.importAll(obj); this.renderResults(); this.drawStats(); this.updateGoalsUI(); this.syncCalcHello(); UI.snack("Import sikeres."); }
-      catch(e){ alert("Import hiba: "+e.message); }
-    });
-    $("#resetAll").addEventListener("click",()=>{
-      if(!confirm("Biztos teljes reset?")) return;
-      API.deleteProfile(); UI.snack("Adatok törölve."); location.reload();
-    });
+  updateProfileIcon(){
+    const p=API.profile(); if(!p||!p.name) return;
+    $("#profileIcon").textContent=(p.name[0]||"👤").toUpperCase();
   },
+
+  /* ---------- Shortcuts ---------- */
   bindShortcuts(){
     document.addEventListener("keydown",(e)=>{
       if(e.key==="Escape"){ $("#profileModal").classList.add("hidden"); $("#settingsModal").classList.add("hidden"); }
       if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==="k"){ e.preventDefault(); if(this.state.view!=="results") this.setView("results"); $("#searchBox").focus(); }
     });
-  },
-  updateProfileIcon(){
-    const p=API.profile(); if(!p||!p.name) return;
-    $("#profileIcon").textContent=(p.name[0]||"👤").toUpperCase();
-  },
-  syncCalcHello(){
-    const p=API.profile(); const h=$("#hello");
-    if(!p){ h.textContent="Szia! Töltsd ki a profilod a pontos számításhoz."; return; }
-    h.innerHTML=`Szia <b>${esc(p.name)}</b>! Nézzük meg, hány órádba kerülne.`;
   }
 };
 
