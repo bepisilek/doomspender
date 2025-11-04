@@ -546,7 +546,7 @@ const API={
 const COACH=[
 "Ejnye, ezért most sokat fogsz dolgozni. 😬","A pénztárcád halk sírást hallatott. 💸","A jövőbeli éned most csóválja a fejét.",
 "Ha boldoggá tesz, oké – de sok órádba kerül.","Ez már a 'drága, de kell' kategória? 🤨","A bankszámlád szabadságra ment.",
-"10 órán túl? Anyád felhívna. 🫨","Legközelebb írd be: 'gondolkozzak még'.","A racionalitás most ebédel. 🍽️","Legalább szép lesz. Reméljük.",
+"10 órán túl? A jövőbeli Lajos felhívna. 🫨","Legközelebb írd be: 'gondolkozzak még'.","A racionalitás most ebédel. 🍽️","Legalább szép lesz. Reméljük.",
 "Ez egy hosszú műszak ára. ⏳","Instant dopamin, tartós mínusz. ⚡️","A lelkiismereted most offline.","Kávé helyett most dolgozol érte még párat.",
 "Nem muszáj, de megtetted. 😅","A matek nem tapsol most. 🧮","Ezen most a pénzügyi coach felszisszent.","Oké, de használd is naponta!",
 "A józan ész most AFK. 📴","Ha meghoznád újra ezt a döntést? Biztos?","Egy tétel, két sóhaj. 😮‍💨","Ez a 'szív döntött' vásárlás.",
@@ -559,7 +559,7 @@ const COACH=[
 "A spórolásod most levegőt vesz.","Kedves, de költséges.","A 'csak megnézem' után ez lett. 🛒","Én szóltam volna… ha kérdezel. 😉",
 "Egy tárgy, sok óra. Jó csere?","A fej számol, a szív vásárol.","Ha ezt bérben mérnénk, sok lenne.","Majd amikor jön a rezsi, emlékezz. 🧾",
 "Ez már 'felnőtt döntés' – ára van.","A bankod is látta ezt, ugye? 👀","Ha ez örömöt hoz, oké – de sokba került.","Instant jó érzés, késleltetett fájás.",
-"Nem baj, tanulópénz. Drága tanulópénz.","Anyai sóhaj: *hosszan*. 😮‍💨","Ha ezt eladnád később… kérdéses.","Ez már 'jó, de muszáj volt?' kategória.",
+"Nem baj, tanulópénz. Drága tanulópénz.","Pénzügyi sóhaj: *hosszan*. 😮‍💨","Ha ezt eladnád később… kérdéses.","Ez már 'jó, de muszáj volt?' kategória.",
 "Következőre írj listát. 📝","A határidők is integetnek most. ⏰","A spórolásod megbicsaklott.","A pénzed kicsit elszaladt kávézni. ☕",
 "Egy 'majd legközelebb' gomb hiányzott.","Ezt a döntést a jövőbeli te értékelni fogja? 🤔","Tarts egy 24 órás szabályt legközelebb.",
 "Most már legalább motivált vagy dolgozni. 😅","A költségvetésed kér egy meetinget. 📊","Ez kérem préselt munkaórákból készült. 🔧",
@@ -572,7 +572,36 @@ const COACH=[
 "Ha a munkád boldoggá tesz – megdolgoztál érte.","A jövőbeli számlák nem felejtenek.","A keret csipogott. 📉","A döntés megvan – most használd is, sokat!",
 "Minimum 10 óra – maximum öröm?","Ha ez inspirál: nyertél. Ha nem: tanultál.","Oké, de a következő legyen 'Megspórolom'.",
 "A bankod eddig bírta nevetés nélkül. 😬","Minden rendben – csak most kicsit drága lett.","A spórolásod most visszaszámol.",
-"Ezt még Anyád is megkérdezné: kellett?","Zárjuk le: használd egészséggel, okosan. ✅"
+"Ezt még a józan eszed is megkérdezné: kellett?","Zárjuk le: használd egészséggel, okosan. ✅"
+];
+
+/* =======================================================================
+   SZIA LAJOS! ACTION MESSAGES
+   ======================================================================= */
+const positiveMessages=[
+  "Szia Lajos, most épp egy lépéssel közelebb vagy a szabadsághoz.",
+  "Okos döntés, Lajos – még pár ilyen, és lesz nyaralásod is.",
+  "Spórolni nem menő, csak hasznos – és te most hasznos vagy.",
+  "A jövőbeli Lajos koccint rád egy ásványvízzel.",
+  "A bankszámlád hálás, még ha nem is tud beszélni.",
+  "Na látod, működik az önuralom, nem csak legenda.",
+  "Lassan, de biztosan, Lajos – a türelem forintot terem.",
+  "Egy kicsit most gazdagabb vagy, még ha csak lélekben is.",
+  "Szia Lajos, ez volt a felnőtt élet első jele.",
+  "Ha minden nap így döntesz, egyszer te leszel a motivációs poszt."
+];
+
+const negativeMessages=[
+  "Megvetted? Szép. A pénztárcád sír, de legalább te boldog vagy.",
+  "Szia Lajos, most megint eladtad a jövőd egy kávéért.",
+  "Gratulálok, a célod most épp hátrébb lépett kettőt.",
+  "Nem baj, legalább gazdagabb lettél tapasztalatban.",
+  "A spórolás várhat – mondta még senki, aki elérte a célját.",
+  "Lajos, a költekezés öröm – rövid távon.",
+  "Még egy ilyen döntés, és a célod már csak mese lesz.",
+  "Ha a pénz beszél, most épp azt mondta: viszlát.",
+  "Jó választás lenne… egy másik univerzumban.",
+  "Szia Lajos, a jövőbeli éned most épp kikapcsolta a Wi-Fit, hogy ne lássa ezt."
 ];
 
 /* =======================================================================
@@ -670,8 +699,16 @@ const App={
 
   /* ---------- Flow: Welcome → Profile ---------- */
   bindWelcome(){
-    $("#startBtn").addEventListener("click",()=>{$("#welcomeScreen").classList.add("hidden");$("#profileSetupScreen").classList.remove("hidden")});
-    $("#backToWelcome").addEventListener("click",()=>{$("#profileSetupScreen").classList.add("hidden");$("#welcomeScreen").classList.remove("hidden")});
+    const startBtn=$("#startBtn");
+    const backBtn=$("#backToWelcome");
+    if(startBtn) startBtn.addEventListener("click",()=>{
+      $("#welcomeScreen").classList.add("hidden");
+      $("#profileSetupScreen").classList.remove("hidden");
+    });
+    if(backBtn) backBtn.addEventListener("click",()=>{
+      $("#profileSetupScreen").classList.add("hidden");
+      $("#welcomeScreen").classList.remove("hidden");
+    });
   },
   bindProfileSetup(){
     $("#saveSetupProfile").addEventListener("click",()=>{
