@@ -950,7 +950,34 @@ const App={
 };
 
 removeLegacyMiniChat();
-App.init();
+document.addEventListener("DOMContentLoaded", () => {
+App.init(){
+  Data.migrate();
+  this.bindWelcome();
+  this.bindProfileSetup();
+  this.bindTheme();
+  this.bindTabs();
+  this.bindCalculator();
+  this.bindResults();
+  this.bindGoals();
+  this.bindProfileModal();
+  this.bindShortcuts();
+
+  const p=API.profile();
+  if(p){
+    $("#welcomeScreen").classList.add("hidden");
+    $("#appScreen").classList.remove("hidden");
+    this.updateProfileIcon();
+    this.syncCalcHello();
+  }
+
+  UI.setTheme(API.theme());
+  this.setView("calc");
+  this.renderResults();
+  this.updateGoalsUI();
+}
+
+});
 </script>
 </body>
 </html>
