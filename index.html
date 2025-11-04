@@ -128,11 +128,7 @@ h2{margin:0 0 10px;text-align:center;color:var(--blue);font-size:18px}
 label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
 input,select,textarea{width:100%;padding:12px 14px;border:1px solid color-mix(in srgb,var(--line) 80%,transparent);border-radius:14px;font-size:15px;background:rgba(255,255,255,.6);color:var(--text);transition:border .2s ease,box-shadow .2s ease,background .2s ease}
 input:focus,select:focus,textarea:focus{border-color:color-mix(in srgb,var(--blue) 80%,#fff 20%);outline:none;box-shadow:0 0 0 3px rgba(11,102,255,.15);background:#fff}
-html[data-theme="dark"] input,html[data-theme="dark"] select,html[data-theme="dark"] textarea{background:rgba(20,30,60,.72);border:1px solid color-mix(in srgb,var(--line) 92%,transparent);color:var(--text);box-shadow:0 0 0 1px rgba(8,14,28,.6)}
-html[data-theme="dark"] input:focus,html[data-theme="dark"] select:focus,html[data-theme="dark"] textarea:focus{background:rgba(25,40,78,.9);box-shadow:0 0 0 3px rgba(79,140,255,.28);border-color:color-mix(in srgb,var(--blue) 70%,#1a264a 30%)}
 .row{display:flex;gap:8px;margin-top:10px}
-.row.calc-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
-.row.calc-actions .btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:54px}
 .btn{flex:1;border:none;border-radius:14px;padding:13px 0;font-size:15px;font-weight:900;color:#fff;cursor:pointer;transition:opacity .12s,transform .12s,box-shadow .2s,filter .2s}
 .btn:hover{opacity:.95}
 .btn:active{transform:translateY(1px);filter:brightness(.95)}
@@ -142,15 +138,6 @@ html[data-theme="dark"] input:focus,html[data-theme="dark"] select:focus,html[da
 .red{background:linear-gradient(135deg,#f87171,var(--red))}
 .yellow{background:linear-gradient(135deg,#fde047,var(--yellow));color:#111}
 .gray{background:linear-gradient(135deg,#f3f4f6,#e5e7eb);color:#111}
-html[data-theme="dark"] .card{background:color-mix(in srgb,var(--card) 94%,transparent);box-shadow:var(--shadow)}
-html[data-theme="dark"] .card::before{border:1px solid rgba(118,146,214,.24);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,0))}
-html[data-theme="dark"] .tab{background:rgba(21,31,58,.84);color:var(--muted);box-shadow:0 10px 24px rgba(0,0,0,.35)}
-html[data-theme="dark"] .tab.active{color:#fff;box-shadow:0 14px 32px rgba(79,140,255,.35)}
-html[data-theme="dark"] .yellow{background:linear-gradient(135deg,#f6c945,#f7d860);color:#201500}
-html[data-theme="dark"] .gray{background:linear-gradient(135deg,#1c2644,#28335a);color:var(--text)}
-html[data-theme="dark"] .result{background:linear-gradient(135deg,rgba(79,140,255,.2),rgba(143,141,255,.16));color:#f6f7ff;border-color:rgba(125,156,255,.32);box-shadow:0 14px 30px rgba(4,9,22,.6)}
-html[data-theme="dark"] footer{color:color-mix(in srgb,var(--muted) 80%,#fff 20%)}
-html[data-theme="dark"] .funny-threat{background:color-mix(in srgb,var(--card) 92%,transparent);border-color:rgba(100,128,196,.32);box-shadow:0 16px 36px rgba(0,0,0,.46);color:color-mix(in srgb,var(--muted) 90%,#fff 10%)}
 
 /* Calculator result + coach bubble */
 .result{background:linear-gradient(135deg,rgba(76,106,255,.12),rgba(143,109,255,.14));border:1px solid rgba(108,130,255,.3);color:#0b2a66;border-radius:14px;padding:12px 14px;font-weight:800;text-align:center;box-shadow:0 10px 24px rgba(15,36,84,.1)}
@@ -167,7 +154,6 @@ html[data-theme="dark"] .funny-threat{background:color-mix(in srgb,var(--card) 9
   .tabs{gap:8px}
   .card{padding:16px 14px}
   .row{flex-direction:column}
-  .row.calc-actions{grid-template-columns:1fr}
   .controls{grid-template-columns:1fr;gap:10px}
   .bubble{right:10px;left:10px;max-width:none}
 }
@@ -594,12 +580,7 @@ const negativeMessages=[
 const UI={
   snackTimer:null,
   coachTimer:null,
-  actionMessageTimer:null,
-  setTheme(theme){
-    const applied=API.setTheme(theme);
-    document.documentElement.setAttribute("data-theme",applied);
-    $("#themeToggle").checked=(applied==="dark");
-  },
+  setTheme(theme){document.documentElement.setAttribute("data-theme",theme);$("#themeToggle").checked=(theme==="dark");API.setTheme(theme)},
   snack(msg,withUndo,undoFn){
     const s=$("#snack");
     if(this.snackTimer){clearTimeout(this.snackTimer); this.snackTimer=null;}
@@ -623,30 +604,12 @@ const UI={
   coach(text){
     const b=$("#coach");
     if(this.coachTimer){clearTimeout(this.coachTimer); this.coachTimer=null;}
-    b.textContent="Szia Lajos!: "+text;
+    b.textContent="Apádhelyett Anyád: "+text;
     b.classList.add("show");
     this.coachTimer=setTimeout(()=>{
       b.classList.remove("show");
       this.coachTimer=null;
     },2400);
-  },
-  showActionMessage(kind){
-    const el=$("#funnyThreat");
-    if(!el) return;
-    const pool=kind==="positive"?positiveMessages:kind==="negative"?negativeMessages:[];
-    if(!pool.length) return;
-    if(this.actionMessageTimer){
-      clearTimeout(this.actionMessageTimer);
-      this.actionMessageTimer=null;
-    }
-    el.classList.remove("show");
-    void el.offsetWidth;
-    el.textContent=pool[Math.floor(Math.random()*pool.length)];
-    el.classList.add("show");
-    this.actionMessageTimer=setTimeout(()=>{
-      el.classList.remove("show");
-      this.actionMessageTimer=null;
-    },3600);
   }
 };
 
