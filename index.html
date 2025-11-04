@@ -1,1 +1,46 @@
-<html><body><h1>Munkaóra MVP</h1></body></html>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Munkaóra – Profil</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>Munkaóra</h1>
+    <p class="subtitle">Tudd, hány órát dolgozol a vágyaidért. <span class="tag">+ Apádhelyett Anyád 😏</span></p>
+
+    <section class="card">
+      <h2>Profilod</h2>
+      <form id="profileForm" autocomplete="off">
+        <div class="form-group">
+          <label for="name">Becenév</label>
+          <input id="name" type="text" placeholder="Add meg a beceneved" required />
+        </div>
+        <div class="form-group">
+          <label for="age">Kor</label>
+          <input id="age" type="number" min="1" placeholder="Add meg a korod" required />
+        </div>
+        <div class="form-group">
+          <label for="salary">Nettó havi fizetés (Ft)</label>
+          <input id="salary" type="number" min="1" placeholder="pl. 450000" required />
+        </div>
+        <div class="form-group">
+          <label for="hours">Heti munkaórák</label>
+          <input id="hours" type="number" min="1" placeholder="pl. 40" required />
+        </div>
+        <div class="button-row">
+          <button type="button" id="saveProfile" class="btn blue">Mentés</button>
+          <button type="button" id="deleteProfile" class="btn gray">Profil törlése</button>
+        </div>
+      </form>
+    </section>
+
+    <footer><p>© 2025 Munkaóra • <span class="accent">Apádhelyett Anyád 😏</span></p></footer>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
