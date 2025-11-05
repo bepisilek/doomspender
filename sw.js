@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'munkaora-v3-20240207';
+const CACHE_VERSION = 'munkaora-v2-20240207';
 const APP_SHELL = [
   './',
   './index.html',
