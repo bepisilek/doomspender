@@ -763,15 +763,19 @@ const App={
 
     const commit=(type)=>{
       const r=$("#calcResult"); const name=r.dataset.name; const price=Number(r.dataset.price); const hours=Number(r.dataset.hours);
-      if(!name||!price){alert("Előbb számolj!");return;}
+      if(!name||!price){alert("Előbb számolj!");return false;}
       API.add(type,{name,price,hours});
       this.state.lastAction={type,entry:{name,price,hours,at:now()}};
       UI.showActionMessage(type==="saved"?"positive":"negative");
       $("#productName").value=""; $("#productPrice").value=""; r.classList.add("hidden");
       this.setView("results",{coachDelay:3200});
     };
-    $("#saveBtn").addEventListener("click",()=>commit("saved"));
-    $("#buyBtn").addEventListener("click",()=>commit("spent"));
+    $("#saveBtn").addEventListener("click",()=>{
+      if(commit("saved")) this.setView("results",{coachDelay:3600});
+    });
+    $("#buyBtn").addEventListener("click",()=>{
+      if(commit("spent")) this.setView("results",{coachDelay:3600});
+    });
   },
   syncCalcHello(){
     const p=API.profile(); const h=$("#hello");
